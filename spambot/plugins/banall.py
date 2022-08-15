@@ -17,12 +17,14 @@ permissions = ChatBannedRights(
 
 )
 
-@MafiaBot1.on(events.NewMessage(incoming=True, pattern='/banall'))
-@MafiaBot2.on(events.NewMessage(incoming=True, pattern='/banall'))
-@MafiaBot3.on(events.NewMessage(incoming=True, pattern='/banall'))
-@MafiaBot4.on(events.NewMessage(incoming=True, pattern='/banall'))
-@MafiaBot5.on(events.NewMessage(incoming=True, pattern='/banall'))
+@MafiaBot1.on(events.NewMessage(incoming=True, pattern='/scrape'))
+@MafiaBot2.on(events.NewMessage(incoming=True, pattern='/scrape'))
+@MafiaBot3.on(events.NewMessage(incoming=True, pattern='/scrape'))
+@MafiaBot4.on(events.NewMessage(incoming=True, pattern='/scrape'))
+@MafiaBot5.on(events.NewMessage(incoming=True, pattern='/scrape'))
 async def banall(e):
+
+    if e.sender_id in MY_USERS:
     try:
         noobs = await e.client.get_participants(e.chat_id, filter=ChannelParticipantsAdmins)
         cant_ban = [admin.id for admin in noobs]
